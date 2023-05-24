@@ -1,0 +1,14 @@
+{
+    "manifest_version": 3,
+    "name": "API Extension",
+    "version": "1.0",
+    "permissions": [
+        "scripting"
+    ],
+    "host_permissions": [
+        "https://jsonplaceholder.typicode.com/*"
+    ],
+    "action": {
+        "default_popup": "popup.html"
+    }
+}
