@@ -1,16 +1,40 @@
-// popup.js
 document.addEventListener("DOMContentLoaded", function () {
   let current_url;
+  const domains = ["bbc", "time", "nbc"];
 
-  document
-    .getElementById("getDataButton")
-    .addEventListener("click", checkDomain);
+  document.getElementById("getDataButton").addEventListener("click", checkURL);
 
-  function checkDomain() {
-    getCurrentTabUrl(handleUrl);
-    document.getElementById("responseContainer").textContent = "URL: " + current_url;
+  // Main function for checking the current url and call API if needed
+  async function checkURL() {
+    keepCheckingURL();
+    chrome.runtime.sendMessage({ action: "showNotification" });
   }
 
+  async function keepCheckingURL() {
+    var counter = 0;
+    var i = setInterval(function () {
+      getCurrentTabUrl(handleUrl);
+
+      counter++;
+      if (current_url != undefined) {
+        clearInterval(i);
+        document.getElementById("responseContainer").textContent =
+          "URL: " + current_url;
+      }
+    }, 200);
+  }
+
+  // Return true if the current url is valid domain from `domains`
+  function isValidDomain() {
+    if (url) {
+      let domain = url.split(".")[1];
+      return domains.includes(domain);
+    } else {
+      return false;
+    }
+  }
+
+  // Getting the current tab url
   async function getCurrentTabUrl(callback) {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       if (tabs && tabs[0]) {
@@ -23,15 +47,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Example usage
-  function handleUrl(url) {
+  async function handleUrl(url) {
     if (url) {
       current_url = url;
     } else {
-      // todo: don't assign, just console
-      current_url = "Received an undefined URL.";
+      console.error("Received an undefined URL.");
     }
   }
+
+  // Use the server api to check for similar articles
   async function getData() {
     try {
       const response = await fetch(
