@@ -3,8 +3,11 @@
   "name": "All News Client Extension",
   "version": "1.0",
   "permissions": ["scripting", "tabs", "notifications"],
-  "host_permissions": ["https://all-news-project.github.io/example-api-data/*"],
+  "host_permissions": ["http://127.0.0.1:5000/*"],
   "action": {
     "default_popup": "popup.html"
+  },
+  "icons": {
+    "128": "icons/icon128.png"
   }
 }

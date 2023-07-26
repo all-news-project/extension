@@ -18,16 +18,60 @@ document.addEventListener("DOMContentLoaded", function () {
       counter++;
       if (current_url != undefined) {
         clearInterval(i);
-        document.getElementById("responseContainer").textContent =
-          "URL: " + current_url;
+
+        // Check if current website is in valid domain (news website)
+        if (isValidDomain(current_url)) {
+          // Call the function
+          getDataAndProcess();
+          getData()
+            .then((data) => {
+              // handle the data in the UI
+              handleDataWithUI(data);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+
+          // The current url is not news website
+        } else {
+          setErrorMsg("Current website is not valid domain");
+        }
       }
     }, 200);
   }
 
+  function handleDataWithUI(data) {
+    if (data["succeeded"]) {
+      delErrorMsg();
+      setTitle(document.title);
+      setSuggestions(data["articles_data"]);
+    } else {
+      console.warn(data["error_msg"]);
+      setErrorMsg("Didn't find similar articles");
+    }
+  }
+
+  // Wait for the data from the getData function (API) and return
+  async function getDataAndProcess() {
+    try {
+      const data = await getData();
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   // Return true if the current url is valid domain from `domains`
-  function isValidDomain() {
+  function isValidDomain(url) {
     if (url) {
-      let domain = url.split(".")[1];
+      console.log("url: ", url);
+      let domain = "";
+      if (url.includes("www.")) {
+        domain = url.split(".")[1];
+      } else {
+        domain = url.split("//")[1].split(".")[0];
+      }
+      console.log("domain: ", domain);
       return domains.includes(domain);
     } else {
       return false;
@@ -59,12 +103,10 @@ document.addEventListener("DOMContentLoaded", function () {
   async function getData() {
     try {
       const response = await fetch(
-        "https://all-news-project.github.io/example-api-data/get_similar_articles01.json"
+        "http://127.0.0.1:5000/get_similar_articles?url=" + current_url
       );
       const data = await response.json();
-      console.log(data);
-      document.getElementById("responseContainer").textContent =
-        JSON.stringify(data);
+      return data;
     } catch (error) {
       console.error(error);
     }
