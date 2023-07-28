@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let current_url;
   const domains = ["bbc", "time", "nbc"];
 
-  document.getElementById("getDataButton").addEventListener("click", checkURL);
+  document.getElementById("refreshBtn").addEventListener("click", checkURL);
 
   // Main function for checking the current url and call API if needed
   async function checkURL() {
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function handleDataWithUI(data) {
     if (data["succeeded"]) {
       delErrorMsg();
-      setTitle(document.title);
+      setTitle(data["title"]);
       setSuggestions(data["articles_data"]);
     } else {
       console.warn(data["error_msg"]);

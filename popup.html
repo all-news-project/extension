@@ -6,13 +6,18 @@
     <script src="popup.js"></script>
     <script src="ui.js"></script>
 
-    <link rel="stylesheet" href="style/popup.css">
+    <link rel="stylesheet" href="style/popup.css" />
   </head>
 
   <body>
-    <button id="getDataButton">Get Data</button>
-    <div id="errorMsg"></div>
-    <h3 id="title"></h3>
-    <div id="articles"></div>
+    <header>
+      <img class="icon" src="icons/icon128.png" alt="All News Icon" />
+      <img src="icons/refresh.jpg" alt="Refresh" class="icon" id="refreshBtn" />
+    </header>
+    <main>
+      <div id="errorMsg"></div>
+      <div id="title" class="title box"></div>
+      <div id="articles"></div>
+    </main>
   </body>
 </html>
