@@ -33,3 +33,15 @@ Google extension that by reading an article in specific news website the extensi
 5. Choose the folder of the repository you cloned.
 
 6. [Optional] You can choose to pin the extension to the browser panel by clicking the pin icon: <br><br> ![Alt text](images/installed_extenstions.png)
+
+## How to use the extension
+
+When you are in news website (that are in this list) and you want to check if there more news article with the same subject you can open the extension and click the refresh button, now you have four different options:
+
+1. If the website you using is not valid (the system is not scraping the articles from it) you will get the message: `Current website is not valid domain`.
+
+2. If there was a technical problem to show the response from the server API you will get the message: `Error showing news articles, Please try again...`.
+
+3. If you are using valid website but there was not found other classified articles you will get the message: `Didn't find similar articles`.
+
+4. If there exists classified news articles at the server you will see the suggestions of other article, for example: <br><br> ![Alt text](images/extension_screenshot.png)
