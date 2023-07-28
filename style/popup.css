@@ -24,6 +24,7 @@ main {
 .title {
   text-align: center;
   padding: 20px;
+  margin-bottom: 5px;
   font-size: 1rem;
 }
 
@@ -45,13 +46,75 @@ main {
   font-size: 1rem;
 }
 
+.errorMsg {
+  text-align: center;
+  font-weight: bold;
+  color: #c33535;
+  padding: 15px;
+}
+
 .icon {
   height: 50px;
   width: 50px;
   padding: 5px;
 }
 
+.logo {
+  height: 60px;
+  width: 60px;
+  padding: 10px;
+}
+
+.refresh {
+  transition: 0.3s;
+}
+
+.refresh:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
 .box {
   background-color: #ededed;
   border-radius: 5px;
+}
+
+.display_none_util_active {
+  display: none;
+}
+
+@-webkit-keyframes rotating {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
 }
