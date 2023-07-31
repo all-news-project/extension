@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
   async function getData() {
     try {
       const response = await fetch(
-        "http://127.0.0.1:5000/get_similar_articles?url=" + current_url
+        "https://all-news-api.onrender.com/get_similar_articles?url=" + current_url
       );
       const data = await response.json();
       return data;
