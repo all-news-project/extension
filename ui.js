@@ -45,12 +45,12 @@ function openUrl(url) {
   chrome.tabs.create({ url: newURL });
 }
 
-function makeRefereshRotate() {
+function makeRefreshRotate() {
   console.log("rotating");
   document.getElementById("refreshBtn").classList.add("rotating");
 }
 
-function makeRefereshNotRotate() {
+function makeRefreshNotRotate() {
   console.log("not rotating");
   document.getElementById("refreshBtn").classList.remove("rotating");
 }

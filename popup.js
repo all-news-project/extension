@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Main function for checking the current url and call API if needed
   async function checkURL() {
-    makeRefereshRotate();
+    makeRefreshRotate();
     keepCheckingURL();
     chrome.runtime.sendMessage({ action: "showNotification" });
   }
@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
       counter++;
       if (current_url != undefined) {
         clearInterval(i);
-        makeRefereshNotRotate();
 
         // Check if current website is in valid domain (news website)
         if (isValidDomain(current_url)) {
@@ -29,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then((data) => {
               // handle the data in the UI
               handleDataWithUI(data);
+              makeRefreshNotRotate();
             })
             .catch((error) => {
               console.error(error);
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           // The current url is not news website
         } else {
-          makeRefereshNotRotate();
+          makeRefreshNotRotate();
           setErrorMsg("Current website is not valid domain");
         }
       }
@@ -107,7 +107,8 @@ document.addEventListener("DOMContentLoaded", function () {
   async function getData() {
     try {
       const response = await fetch(
-        "https://all-news-api.onrender.com/get_similar_articles?url=" + current_url
+        "https://all-news-api.onrender.com/get_similar_articles?url=" +
+          current_url
       );
       const data = await response.json();
       return data;
