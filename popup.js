@@ -19,26 +19,16 @@ document.addEventListener("DOMContentLoaded", function () {
       counter++;
       if (current_url != undefined) {
         clearInterval(i);
-
-        // Check if current website is in valid domain (news website)
-        if (isValidDomain(current_url)) {
-          // Call the function
-          getDataAndProcess();
-          getData()
-            .then((data) => {
-              // handle the data in the UI
-              handleDataWithUI(data);
-              makeRefreshNotRotate();
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-
-          // The current url is not news website
-        } else {
-          makeRefreshNotRotate();
-          setErrorMsg("Current website is not valid domain");
-        }
+        getDataAndProcess();
+        getData()
+          .then((data) => {
+            // handle the data in the UI
+            handleDataWithUI(data);
+            makeRefreshNotRotate();
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       }
     }, 200);
   }
@@ -62,23 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return data;
     } catch (error) {
       console.error(error);
-    }
-  }
-
-  // Return true if the current url is valid domain from `domains`
-  function isValidDomain(url) {
-    if (url) {
-      console.log("url: ", url);
-      let domain = "";
-      if (url.includes("www.")) {
-        domain = url.split(".")[1];
-      } else {
-        domain = url.split("//")[1].split(".")[0];
-      }
-      console.log("domain: ", domain);
-      return domains.includes(domain);
-    } else {
-      return false;
     }
   }
 

@@ -29,11 +29,17 @@ function setSuggestions(articles_data) {
   let articles_data_output = '<div>';
   articles_data_output += '<h2 class="sub_title">Suggestions:</h2>';
   for (const article_data of articles_data) {
+
+    let icon_url = "https://cdn-icons-png.flaticon.com/128/2807/2807258.png"
+    console.log(article_data['icon_url']);
+    if(article_data['icon_url'] != null) {
+      icon_url = article_data['icon_url']
+    }
     articles_data_output += '<span class="article_row">';
     articles_data_output += '<a class="box" href="' + article_data['url'] + '" target="_blank">';
     articles_data_output += article_data['title'].substring(0, TITLE_CUT_INDEX) + '...';
     articles_data_output += '</a>';
-    articles_data_output += '<img class="icon" src="icons/' + article_data['domain'] + '.png">';
+    articles_data_output += '<img class="icon" src="' + icon_url + '">';
     articles_data_output += '</span>';
   }
   articles_data_output += '</div>';
@@ -51,6 +57,6 @@ function makeRefreshRotate() {
 }
 
 function makeRefreshNotRotate() {
-  console.log("not rotating");
+  console.log("not rotating!!");
   document.getElementById("refreshBtn").classList.remove("rotating");
 }
