@@ -30,10 +30,9 @@ function setSuggestions(articles_data) {
   articles_data_output += '<h2 class="sub_title">Suggestions:</h2>';
   for (const article_data of articles_data) {
 
-    let icon_url = "https://cdn-icons-png.flaticon.com/128/2807/2807258.png"
-    console.log(article_data['icon_url']);
+    let icon_url = "https://cdn-icons-png.flaticon.com/128/2807/2807258.png";
     if(article_data['icon_url'] != null) {
-      icon_url = article_data['icon_url']
+      icon_url = article_data['icon_url'];
     }
     articles_data_output += '<span class="article_row">';
     articles_data_output += '<a class="box" href="' + article_data['url'] + '" target="_blank">';
