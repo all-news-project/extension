@@ -1,4 +1,4 @@
-const TITLE_CUT_INDEX = 25;
+//const TITLE_CUT_INDEX = 25;
 
 function setErrorMsg(error_msg) {
   document.getElementById("errorMsg").innerHTML = error_msg;

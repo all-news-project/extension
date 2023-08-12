@@ -2,11 +2,12 @@
   "manifest_version": 3,
   "name": "All News Client Extension",
   "version": "1.0.2",
-  "permissions": ["scripting", "tabs", "notifications"],
+  "permissions": ["activeTab","scripting", "tabs", "notifications", "background"],
   "host_permissions": ["https://all-news-api.onrender.com/*"],
   "action": {
     "default_popup": "popup.html"
   },
+
   "icons": {
     "128": "icons/icon128.png"
   }

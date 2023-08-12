@@ -1,11 +1,21 @@
+TITLE_CUT_INDEX=25;
 document.addEventListener("DOMContentLoaded", function () {
   let current_url;
   const domains = ["bbc", "time", "nbc"];
 
-  document.getElementById("refreshBtn").addEventListener("click", checkURL);
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    const activeTab = tabs[0];
+    getCurrentTabUrl();
+    //alert(current_url);
+    //alert("FUCK");
+    //setErrorMsg("NOT WORKING");
+    checkURL();
+    //messageElement.textContent = "Extension icon clicked!";
+  });
 
   // Main function for checking the current url and call API if needed
   async function checkURL() {
+    console.log("entering checkURL function");
     makeRefreshRotate();
     keepCheckingURL();
     chrome.runtime.sendMessage({ action: "showNotification" });
@@ -14,8 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
   async function keepCheckingURL() {
     var counter = 0;
     var i = setInterval(function () {
+      console.log("trying to get url");
       getCurrentTabUrl(handleUrl);
-
+      console.log("got url -",current_url);
       counter++;
       if (current_url != undefined) {
         clearInterval(i);
@@ -57,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Getting the current tab url
   async function getCurrentTabUrl(callback) {
+    //callback(location.href);
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       if (tabs && tabs[0]) {
         var currentTab = tabs[0];
