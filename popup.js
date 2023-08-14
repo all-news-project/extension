@@ -1,16 +1,11 @@
-TITLE_CUT_INDEX=25;
+const TITLE_CUT_INDEX = 25;
 document.addEventListener("DOMContentLoaded", function () {
   let current_url;
-  const domains = ["bbc", "time", "nbc"];
 
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     const activeTab = tabs[0];
     getCurrentTabUrl();
-    //alert(current_url);
-    //alert("FUCK");
-    //setErrorMsg("NOT WORKING");
     checkURL();
-    //messageElement.textContent = "Extension icon clicked!";
   });
 
   // Main function for checking the current url and call API if needed
@@ -26,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var i = setInterval(function () {
       console.log("trying to get url");
       getCurrentTabUrl(handleUrl);
-      console.log("got url -",current_url);
+      console.log("got url -", current_url);
       counter++;
       if (current_url != undefined) {
         clearInterval(i);

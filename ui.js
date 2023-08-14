@@ -1,5 +1,3 @@
-//const TITLE_CUT_INDEX = 25;
-
 function setErrorMsg(error_msg) {
   document.getElementById("errorMsg").innerHTML = error_msg;
 }
@@ -9,10 +7,12 @@ function delErrorMsg() {
 }
 
 function displayActive() {
-  var nonDisplayElements = document.getElementsByClassName("display_none_util_active");
+  var nonDisplayElements = document.getElementsByClassName(
+    "display_none_util_active"
+  );
   for (var i = 0; i < nonDisplayElements.length; i++) {
     nonDisplayElements.item(i).style.display = "block";
- }
+  }
 }
 
 function setTitle(title) {
@@ -26,22 +26,41 @@ function setSuggestions(articles_data) {
     setErrorMsg("Error showing news articles, Please try again...");
     return;
   }
-  let articles_data_output = '<div>';
+
+  // Prepare article suggestions element output
+  let articles_data_output = "<div>";
   articles_data_output += '<h2 class="sub_title">Suggestions:</h2>';
   for (const article_data of articles_data) {
-
+    // Prepare icon
     let icon_url = "https://cdn-icons-png.flaticon.com/128/2807/2807258.png";
-    if(article_data['icon_url'] != null) {
-      icon_url = article_data['icon_url'];
+    if (article_data["icon_url"] != null) {
+      icon_url = article_data["icon_url"];
     }
+
+    // Article row
     articles_data_output += '<span class="article_row">';
-    articles_data_output += '<a class="box" href="' + article_data['url'] + '" target="_blank">';
-    articles_data_output += article_data['title'].substring(0, TITLE_CUT_INDEX) + '...';
-    articles_data_output += '</a>';
+
+    // URL
+    articles_data_output +=
+      '<a class="box" href="' + article_data["url"] + '" target="_blank">';
+
+    // Article title
+    articles_data_output += '<span class="article_title">';
+    articles_data_output +=
+      article_data["title"].substring(0, TITLE_CUT_INDEX) + "...";
+    articles_data_output += "</span>";
+
+    // Publishing time
+    articles_data_output += '<p class="publishing_time">';
+    articles_data_output += article_data["publishing_time"];
+    articles_data_output += "</p>";
+    articles_data_output += "</a>";
+
+    // Icon
     articles_data_output += '<img class="icon" src="' + icon_url + '">';
-    articles_data_output += '</span>';
+    articles_data_output += "</span>";
   }
-  articles_data_output += '</div>';
+  articles_data_output += "</div>";
   document.getElementById("articles").innerHTML = articles_data_output;
   console.warn("articles_data: ", articles_data);
 }

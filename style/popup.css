@@ -3,7 +3,7 @@
 }
 
 body {
-  width: 300px;
+  width: 350px;
   height: auto;
 }
 
@@ -81,6 +81,15 @@ main {
 
 .display_none_util_active {
   display: none;
+}
+
+.article_title {
+  font-weight: 400;
+}
+
+.publishing_time {
+  font-size: 0.7rem;
+  font-style: italic;
 }
 
 @-webkit-keyframes rotating {
